@@ -3,6 +3,7 @@
 import { Bounded } from "@/components/Bounded";
 import Button from "@/components/Button";
 import { TextSplitter } from "@/components/TextSplitter";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useStore } from "@/hooks/useStore";
 import { useGSAP } from "@gsap/react";
 import { Content, asText } from "@prismicio/client";
@@ -26,10 +27,11 @@ export type HeroProps = SliceComponentProps<Content.HeroSlice>;
  */
 const Hero = ({ slice }: HeroProps): JSX.Element => {
   const ready = useStore((state) => state.ready);
+  const isDesktop = useMediaQuery("(min-width: 768px)", true);
 
   useGSAP(
     () => {
-      if (!ready) return;
+      if (isDesktop && !ready) return;
       const introTimeline = gsap.timeline();
 
       introTimeline
@@ -72,7 +74,7 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
         })
         .from(".text-side-body", { y: 20, opacity: 0 });
     },
-    { dependencies: [ready] },
+    { dependencies: [ready, isDesktop] },
   );
 
   return (
@@ -81,10 +83,12 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
       data-slice-variation={slice.variation}
       className="hero opacity-0"
     >
-      <View className="hero-scene pointer-events-none sticky top-0 z-50 -mt-[100vh] hidden h-screen w-screen md:block">
-        <Scene />
-        <Bubbles count={300} speed={2} repeat={true} />
-      </View>
+      {!!isDesktop && (
+        <View className="hero-scene pointer-events-none sticky top-0 z-50 -mt-[100vh] hidden h-screen w-screen md:block">
+          <Scene />
+          <Bubbles count={300} speed={2} repeat={true} />
+        </View>
+      )}
       <div className="grid">
         <div className="grid h-screen place-items-center">
           <div className="grid auto-rows-min place-items-center text-center">

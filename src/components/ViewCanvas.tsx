@@ -29,6 +29,7 @@ const ViewCanvas = ({}: ViewCanvasProps) => {
       </mesh>
       <Scene />
       <View.Port />
+      {/* <Perf /> */}
     </Canvas>
   );
 };
