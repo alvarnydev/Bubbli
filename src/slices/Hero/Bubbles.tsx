@@ -80,8 +80,8 @@ export function Bubbles({
 
       // Reset bubble position if it moves off the top of the screen
       if (o.position.y > 4 && repeat) {
-        o.position.y = -2; // Reset to bottom
         o.position.x = gsap.utils.random(-4, 4);
+        o.position.y = 2; // Reset to bottom
         o.position.z = gsap.utils.random(0, 8);
       }
 

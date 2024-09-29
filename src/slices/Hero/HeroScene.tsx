@@ -111,6 +111,7 @@ const HeroScene = ({}: HeroSceneProps) => {
       .to(can5Ref.current.position, { x: 0.3, y: 0.5, z: -0.5 }, 0)
       .to(can5Ref.current.rotation, { z: -0.25 }, 0);
 
+    // Can group to the right
     scrollTimeLine.to(
       groupRef.current.position,
       { x: 1, duration: 3, ease: "sine.inOut" },
