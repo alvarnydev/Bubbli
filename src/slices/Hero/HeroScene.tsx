@@ -12,9 +12,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-interface SceneProps {}
+interface HeroSceneProps {}
 
-const Scene = ({}: SceneProps) => {
+const HeroScene = ({}: HeroSceneProps) => {
   const isReady = useStore((state) => state.isReady);
 
   const can1Ref = useRef<Group>(null);
@@ -148,4 +148,4 @@ const Scene = ({}: SceneProps) => {
   );
 };
 
-export default Scene;
+export default HeroScene;
